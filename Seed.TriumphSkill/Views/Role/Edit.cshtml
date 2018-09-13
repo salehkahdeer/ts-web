@@ -1,0 +1,52 @@
+﻿@model Seed.TriumphSkill.ViewModels.Role
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+
+@using (Html.BeginForm("Edit", "Role", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 4px;"></span>Role</div>
+        <div class="panel-body">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.RoleInfo.ID)
+                    @Html.LabelFor(m => m.RoleInfo.Name, new { @class = "col-lg-2 control-label" })
+
+                    <div class="col-lg-10">
+                        @Html.TextBoxFor(m => m.RoleInfo.Name, new { @class = "form-control", @placeholder = "Name" })
+                        @Html.ValidationMessageFor(m => m.RoleInfo.Name)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-lg-2 control-label">Permissions</span>
+                    <div class="col-lg-10" style="padding-top: 6px;">
+                        @{ 
+                            string feature = "";
+                            foreach (var item in Model.Permissions)
+                            {
+                                if (item.PermissionInfo.Feature != feature)
+                                {
+                                                    <div style="margin-top: 6px;"><b>@item.PermissionInfo.Feature</b></div>
+                                    feature = @item.PermissionInfo.Feature;
+                                }
+                                Html.RenderPartial("PermissionEditorRow", item);
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="reset" class="btn btn-default">Reset Fields</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+}

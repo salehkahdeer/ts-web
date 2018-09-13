@@ -1,0 +1,55 @@
+﻿@model Seed.TriumphSkill.ViewModels.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_AnonLayout.cshtml";
+}
+
+<hgroup class="title">
+    @*<h1>@ViewBag.Title.</h1>*@
+</hgroup>
+
+<section id="loginForm">
+    @*<h2>Use a local account to log in.</h2>*@
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        
+
+        <h2 class="form-signin-heading">Log in</h2>
+        @Html.LabelFor(m => m.UserName, new { @class = "sr-only" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username" })
+        
+        @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+        
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(m => m.RememberMe) Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 20px;">Sign in</button>
+        
+    
+        <p>@Html.ValidationMessageFor(m => m.UserName)</p>
+        <p>@Html.ValidationMessageFor(m => m.Password)</p>
+        @Html.ValidationSummary(true)
+    
+    <p>
+   @Html.ActionLink("Forgot Password", "ResetPassword")
+</p>    
+@*<p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>*@
+    }
+</section>
+
+@*<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

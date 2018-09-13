@@ -1,0 +1,55 @@
+﻿@model Seed.TriumphSkill.Models.SystemSetting
+
+@{
+    ViewBag.Title = "Delete System Setting";
+}
+
+@using (Html.BeginForm("Delete", "SystemSetting", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true" style="margin-right: 4px;"></span>Confirm Deletion</div>
+        <div class="panel-body">
+            <legend>Are you sure you want to delete the system setting?</legend>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SettingType, new { @class = "col-lg-4 control-label" })
+
+                    <div class="col-lg-8">
+                        <label class="control-label"><strong>@Model.SettingTypeValue</strong></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-lg-4 control-label" })
+
+                    <div class="col-lg-8">
+                        <label class="control-label">@Model.Name</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Value, new { @class = "col-lg-4 control-label" })
+
+                    <div class="col-lg-8">
+                        <label class="control-label">@Model.Value</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comments, new { @class = "col-lg-4 control-label" })
+
+                    <div class="col-lg-8">
+                        <label class="control-label">@Model.Comments</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-4">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        @Html.ActionLink("Cancel", "Index", "SystemSetting", new { @class="btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+}

@@ -1,0 +1,50 @@
+.number {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.number-icon {
+    float: left;
+    margin-left: 8px;
+    margin-top: 8px;
+    font-size: 5em;
+    text-align: center;
+}
+
+.number-text {
+    float: right;
+    margin-top: 8px;
+    margin-right: 8px;
+    text-align: right;
+}
+
+.number-kpi {
+    font-size: 3em;
+}
+
+.number-description {
+    font-size: 1em;
+}
+
+.number-details a:hover > div{
+    opacity: 1;
+    font-weight: 500;
+}
+
+.number-link-text {
+    font-size: 1em;
+    opacity: 0.85;
+    padding: 8px;
+    text-align: left;
+    float: left;
+    width: 50%;
+}
+
+.number-link-icon {
+    font-size: 1em;
+    opacity: 0.85;
+    padding: 8px;
+    text-align: right;
+    float: right;
+    width: 50%;
+}

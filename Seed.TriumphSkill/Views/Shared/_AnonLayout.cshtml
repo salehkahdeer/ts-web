@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Bootstrap")
+</head>
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-inner">
+                <div class="navbar-header">
+                    @*@Html.ActionLink("your logo here", "Index", "Home")*@
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <img src="~/Images/logo.png" alt="Home" height="24" /></a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        @*@{Html.RenderAction("Menu", "Home");}*@
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @{Html.RenderAction("State", "Account");}
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderSection("featured", required: false)
+        <div style="margin-top: 75px;">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
+        </section>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/Bootstrap")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

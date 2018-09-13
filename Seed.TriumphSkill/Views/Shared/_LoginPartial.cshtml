@@ -1,0 +1,23 @@
+﻿
+
+@model Boolean
+@if (Request.IsAuthenticated)
+{
+    <text>
+    <span>Welcome, </span>@((User.Identity as Seed.TriumphSkill.SimpleIdentity).Name) <span>!</span>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ActionLink("Change Password", "Manage", "Account") <span> | </span> 
+            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+        }
+    </text>
+}
+else
+{
+    if (@Model) {
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    } else {
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    }
+}

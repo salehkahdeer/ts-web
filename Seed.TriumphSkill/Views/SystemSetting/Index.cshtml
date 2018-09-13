@@ -1,0 +1,93 @@
+﻿@using Seed.TriumphSkill
+@{
+    ViewBag.Title = "Manage System Settings";
+}
+<div class="container-notifications">
+    @Html.SuccessNotification()
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-th-large" aria-hidden="true" style="margin-right: 4px;"></span>System Settings</div>
+    <div class="panel-body">
+        <div class="col-lg-6">
+            <h3>Manage System Settings</h3>
+            <p class="text-info" style="margin-bottom: 50px;">Create, browse, update or delete System Settings and manage your master data. Manage your system wide settings through this configuration.</p>
+        </div>
+        <div class="col-lg-6" style="padding-top: 12px;">
+            <div class="pull-right">
+                <a href="@Url.Action("Create")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right: 4px;"></span>Create New System Setting</a>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <table id="members" class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>Actions
+                        </th>
+                        <th>Type
+                        </th>
+                        <th>Name
+                        </th>
+                        <th>Value
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#modal').modal('show')
+
+            $("#members").dataTable({                
+                "bAutoWidth": false,
+                "bServerSide": true,
+                "bJQueryUI": false,
+                "bAutoWidth": false,
+                "sAjaxSource": '@Url.Action("Index")',
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+                "sDom": '<"row-fluid"<"col-md-6"l><"col-md-6"f>r>t<"row-fluid"<"col-md-6"i><"col-md-6"p>>',
+
+                "aaSorting": [[1, 'asc']],
+                "aoColumns": [
+                            { "sName": "ID", "sWidth": 100, mRender: make_action_link, "bSortable": false, "bSearchable": false, "bUseRendered": false },
+                            { "sName": "SettingTypeValue", "sWidth": 150 },
+                            { "sName": "Name" },
+                            { "sName": "Value" }
+
+                ],
+            }).fnSetFilteringDelay(500);
+
+
+
+        });
+
+        function make_view_link(data, type, row) {
+            var name = row[2];
+            return name;
+        }
+
+
+        function make_action_link(data, type, row) {
+            var id = row[0];            
+            return "<a href='SystemSetting/Edit/" + id + "'>Edit</a> | <a href='SystemSetting/Delete/" + id + "'>Delete</a>";
+        }
+
+    </script>
+}

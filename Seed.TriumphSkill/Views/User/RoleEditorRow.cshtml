@@ -1,0 +1,12 @@
+﻿@using Seed.TriumphSkill
+@model Seed.TriumphSkill.ViewModels.Role
+@using (Html.BeginCollectionItem("Roles"))
+{
+    <div style="margin-top: 4px; margin-bottom: 4px;">
+        <span style="width: 235px; display: inline-block;">
+            @Html.HiddenFor(m => m.RoleInfo.ID)
+            @Model.RoleInfo.Name
+        </span>
+        @Html.CheckBoxFor(m => m.IsSelected, new { @style = "margin-bottom: 6px; margin-right: 4px;" })
+    </div>
+}
